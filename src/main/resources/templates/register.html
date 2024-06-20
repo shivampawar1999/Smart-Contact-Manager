@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+<head>
+
+<title>Sign-Up Page</title>
+</head>
+<body>
+
+
+	<div id="content" class="mt-5">
+
+		<div class="grid grid-cols-12">
+			<div class="col-span-4 md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
+			<div class="col-span-12 md:col-span-8 lg:col-span-6 xl:col-span-4">
+
+				<!-- card -->
+				<div
+					class="block p-6 border-t-8 border-blue-700 bg-white rounded-xl shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-blue-700 dark:hover:bg-gray-700">
+
+					<div th:replace="~{message :: messageBox}"></div>
+
+
+					<h5
+						class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+						Signup here</h5>
+					<p class="font-normal text-gray-400 dark:text-gray-400">start
+						managing contact on cloud...</p>
+
+					<form th:action="@{/doRegister}" method="post" class="mt-5"
+						th:object="${userForm}">
+
+						<!-- username -->
+						<div class="mb-5">
+							<label for="name"
+								class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">UserName</label>
+							<input type="text" id="name" name="name" th:field="*{name}"
+								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								placeholder="enter username here.." required />
+
+							<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+								class="text-red-600 px-1 py-2"></p>
+						</div>
+
+						<!-- email -->
+						<div class="mb-5">
+							<label for="email"
+								class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+								email</label> <input type="email" id="email" name="email"
+								th:field="*{email}"
+								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								placeholder="name@gmail.com" required />
+
+							<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+								class="text-red-600 px-1 py-2"></p>
+						</div>
+
+						<!-- password -->
+						<div class="mb-5">
+							<label for="password"
+								class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+								password</label> <input type="password" id="password" name="password"
+								th:field="*{password}"
+								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								required />
+
+							<p th:if="${#fields.hasErrors('password')}"
+								th:errors="*{password}" class="text-red-600 px-1 py-2"></p>
+						</div>
+
+						<!-- phone number -->
+						<div class="relative z-0 w-full mb-5 group">
+							<input type="tel" pattern="[0-9]{10}" id="phoneNumber"
+								name="phoneNumber" th:field="*{phoneNumber}"
+								class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+								placeholder=" " required /> <label for="phoneNumber"
+								class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone
+								number (7777888899)</label>
+
+							<p th:if="${#fields.hasErrors('phoneNumber')}"
+								th:errors="*{phoneNumber}" class="text-red-600 px-1 py-2"></p>
+						</div>
+
+						<div>
+							<!-- about -->
+
+							<label for="message"
+								class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Write
+								something about your self..</label>
+							<textarea rows="4" id="about" name="about" th:field="*{about}"
+								class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								placeholder="Write your thoughts here..."></textarea>
+								
+								<p th:if="${#fields.hasErrors('about')}" th:errors="*{about}"
+								class="text-red-600 px-1 py-2"></p>
+						</div>
+
+
+
+						<!-- buttons -->
+						<div class="mt-5 flex justify-center space-x-4">
+							<button type="submit"
+								class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Submit</button>
+							<button type="reset"
+								class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Reset</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<!-- ------------------------------------------------------------------------------------------------- -->
+	<script>
+		console.log("signup");
+	</script>
+
+</body>
+</html>

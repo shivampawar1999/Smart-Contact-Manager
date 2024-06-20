@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"
+	th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title th:text="${loggedInUser.name} + ' | SCM' "></title>
+</head>
+<body>
+
+
+	<div id="content">
+
+		<!-- if user is logged in side bar-->
+		<div th:if="${loggedInUser}">
+			<div th:replace="~{user/sidebar :: sidebar}"></div>
+		</div>
+
+		<div class="sm:pl-64 pt-20" style="height: 1000px">
+			<div class="flex justify-center flex-col items-center">
+				<h1 class="text-5xl">Welcome to this is profile</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+					Accusamus molestiae.</p>
+			</div>
+		</div>
+
+	</div>
+
+
+	<script>
+		console.log("profile page");
+	</script>
+</html>
