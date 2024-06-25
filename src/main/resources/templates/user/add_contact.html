@@ -175,6 +175,8 @@
 									data-th-if="${#fields.hasErrors('picture')}"
 									data-th-errors="*{picture}">
 							    </p>  -->
+							    
+							    <img  class="max-h-52 mx-auto rounded-lg shadow m-3" id="upload_image_preview" src="" alt="" />
 							</div>
 
 								<!-- checkbox -->
@@ -219,8 +221,11 @@
 
 
 
+	<script th:src="@{'/js/admin.js'}"></script>
 
 	<script>
 		console.log("Dashboard page");
+		
+		
 	</script>
 </html>

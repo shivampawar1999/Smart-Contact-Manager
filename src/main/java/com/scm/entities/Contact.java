@@ -43,7 +43,7 @@ public class Contact {
 	private boolean favorite = false;
 	private String websiteLink;
 	private String linkdInLink;
-	
+	private String cloudinaryImagePublicId;
 	@ManyToOne()
 	private User user;
 	

@@ -1,5 +1,9 @@
 package com.scm.controllers;
 
+import java.util.UUID;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -17,6 +21,7 @@ import com.scm.helpers.Helper;
 import com.scm.helpers.Message;
 import com.scm.helpers.MessageType;
 import com.scm.services.ContactServiceInterface;
+import com.scm.services.ImageService;
 import com.scm.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -26,12 +31,18 @@ import jakarta.websocket.Session;
 @Controller
 @RequestMapping("/user/contacts")
 public class ContactController {
+	
+	//logger
+		private Logger logger = LoggerFactory.getLogger(ContactController.class);
 
 	@Autowired
 	private ContactServiceInterface contactServiceInterface;
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ImageService imageService;
 
 	@GetMapping("/add")
 	public String addContactView(Model model) {
@@ -56,6 +67,14 @@ public class ContactController {
 					Message.builder().content("Please Correct the following errors").type(MessageType.red).build());
 			return "user/add_contact";
 		}
+		
+		
+		//image processing
+		logger.info("file information : {}", contactForm.getPicture().getOriginalFilename());
+		
+		String fileName = UUID.randomUUID().toString();
+		
+		 String fileUrl = imageService.uploadImage(contactForm.getPicture(), fileName);
 
 		// converting ContactForm into contact
 		Contact contact = new Contact();
@@ -67,8 +86,9 @@ public class ContactController {
 		contact.setFavorite(contactForm.isFavorite());
 		contact.setLinkdInLink(contactForm.getLinkdInLink());
 		contact.setPhoneNumber(contactForm.getPhoneNumber());
-		// contact.setPicture(contactForm.getPicture());
+		contact.setPicture(fileUrl);
 		contact.setWebsiteLink(contactForm.getWebsiteLink());
+		contact.setCloudinaryImagePublicId(fileName);
 
 		// save data into database
 		contactServiceInterface.saveContact(contact);
