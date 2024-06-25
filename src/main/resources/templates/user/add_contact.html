@@ -24,6 +24,7 @@
 					<div
 						class="card block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 
+                        <div th:replace="message::messageBox"></div>
 						<h1 class="text-2xl font-semibold">Add New Contact</h1>
 						<p class="text-gray-500">This contact will be store on cloud.</p>
 
@@ -43,9 +44,11 @@
 										class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="Name..">
 
-									<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-										class="text-red-600 px-1 py-2"></p>
+									
 								</div>
+								
+								<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+										class="text-red-600 px-1 py-2"></p>
 							</div>
 
 							<!-- Email -->
@@ -61,10 +64,9 @@
 										th:field="*{email}"
 										class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="example@gmail.com">
-
-									<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-										class="text-red-600 px-1 py-2"></p>
 								</div>
+								<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+										class="text-red-600 px-1 py-2"></p>
 							</div>
 
 							<!-- phone number -->
@@ -81,9 +83,11 @@
 										class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="0000000000">
 
-									<p th:if="${#fields.hasErrors('phoneNumber')}"
-										th:errors="*{phoneNumber}" class="text-red-600 px-1 py-2"></p>
+									
 								</div>
+								
+								<p th:if="${#fields.hasErrors('phoneNumber')}"
+										th:errors="*{phoneNumber}" class="text-red-600 px-1 py-2"></p>
 							</div>
 
 							<!-- address -->
@@ -131,9 +135,10 @@
 											class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											placeholder="Links..">
 
-										<p th:if="${#fields.hasErrors('websiteLink')}"
-											th:errors="*{websiteLink}" class="text-red-600 px-1 py-2"></p>
 									</div>
+									
+									<p th:if="${#fields.hasErrors('websiteLink')}"
+											th:errors="*{websiteLink}" class="text-red-600 px-1 py-2"></p>
 								</div>
 
 								<!-- linkedIN -->
@@ -148,9 +153,11 @@
 											class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											placeholder="linkdInLink..">
 
-										<p th:if="${#fields.hasErrors('linkdInLink')}"
-											th:errors="*{linkdInLink}" class="text-red-600 px-1 py-2"></p>
+										
 									</div>
+									
+									<p th:if="${#fields.hasErrors('linkdInLink')}"
+											th:errors="*{linkdInLink}" class="text-red-600 px-1 py-2"></p>
 								</div>
 							</div>
 
@@ -180,9 +187,10 @@
 											class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Add
 											to Favorite</label>
 
-										<p th:if="${#fields.hasErrors('favorite')}"
-											th:errors="*{favorite}" class="text-red-600 px-1 py-2"></p>
+										
 									</div>
+									<p th:if="${#fields.hasErrors('favorite')}"
+											th:errors="*{favorite}" class="text-red-600 px-1 py-2"></p>
 								</div>
 
 
