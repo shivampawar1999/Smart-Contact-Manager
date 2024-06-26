@@ -11,4 +11,6 @@ public class AppConstants {
 	public static final int PICTURE_IMAGE_HEIGHT = 500;
 	
 	public static final String PICTURE_IMAGE_CROP = "fill";
+	
+	public static final int PAGE_SIZE = 5;
 }
