@@ -18,6 +18,12 @@ public interface ContactServiceInterface {
 	//search
 	List<Contact> searchBy(String name, String email, String phoneNumber);
 	
+	Page<Contact> searchByName(String name, int page, int size, String sortBy, String direction, User currentUser);
+	
+	Page<Contact> searchByEmail(String email, int page, int size, String sortBy, String direction, User currentUser);
+	
+	Page<Contact> searchByPhone(String phone, int page, int size, String sortBy, String direction, User currentUser);
+	
 	//getContactBy UserId
 	List<Contact> getContactsByUserId(String UserId);
 	

@@ -71,10 +71,36 @@ public class contactServiceImpl implements ContactServiceInterface {
 		
 		
 		Sort sort = direction.equals("desc")? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
-		PageRequest pageable = PageRequest.of(page, size);
+		PageRequest pageable = PageRequest.of(page, size, sort);
 		
 		return contactRepo.findByUser(user, pageable);
 	}
+
+	@Override
+	public Page<Contact> searchByName(String name, int page, int size, String sortBy, String direction, User currentUser) {
+		
+		Sort sort = direction.equals("desc")? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+		PageRequest pageable = PageRequest.of(page, size, sort);
+		return contactRepo.findByUserAndNameContaining(currentUser, name, pageable);
+	}
+
+	@Override
+	public Page<Contact> searchByEmail(String email, int page, int size, String sortBy, String direction, User currentUser) {
+		
+		Sort sort = direction.equals("desc")? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+		PageRequest pageable = PageRequest.of(page, size, sort);
+		return contactRepo.findByUserAndEmailContaining(currentUser, email, pageable);
+	}
+
+	@Override
+	public Page<Contact> searchByPhone(String phone, int page, int size, String sortBy, String direction, User currentUser) {
+		Sort sort = direction.equals("desc")? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+		PageRequest pageable = PageRequest.of(page, size, sort);
+		return contactRepo.findByUserAndPhoneNumberContaining(currentUser, phone, pageable);
+	}
+
+	
+
 
 	
 
