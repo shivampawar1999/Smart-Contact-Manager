@@ -1,7 +1,5 @@
 package com.scm.controllers;
 
-import java.lang.ProcessBuilder.Redirect;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -88,6 +86,7 @@ public class PageController {
 		user.setPassword(userForm.getPassword());
 		user.setAbout(userForm.getAbout());
 		user.setPhoneNumber(userForm.getPhoneNumber());
+		user.setEnabled(false);
 		user.setProfilePic(
 				"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2Fvibrant-tiktok-default-profile-picture-sticker--679902875018963865%2F&psig=AOvVaw1A8jz3ZPbKAc-13TtKOs-W&ust=1717487002561000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCLiO5-n3voYDFQAAAAAdAAAAABAE");
 

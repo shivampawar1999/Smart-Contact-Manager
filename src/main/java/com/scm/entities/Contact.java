@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,7 +46,9 @@ public class Contact {
 	private String websiteLink;
 	private String linkdInLink;
 	private String cloudinaryImagePublicId;
+	
 	@ManyToOne()
+	@JsonIgnore
 	private User user;
 	
 	@OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)

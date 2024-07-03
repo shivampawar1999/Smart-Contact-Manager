@@ -33,8 +33,22 @@ public class contactServiceImpl implements ContactServiceInterface {
 
 	@Override
 	public Contact updateContact(Contact contact) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Contact contactOld = contactRepo.findById(contact.getId()).orElseThrow(() -> new ResourceNotFoundException("Contact Not found"));
+		
+		contactOld.setName(contact.getName());
+		contactOld.setEmail(contact.getEmail());
+		contactOld.setPhoneNumber(contact.getPhoneNumber());
+		contactOld.setAddress(contact.getAddress());
+		contactOld.setDescription(contact.getDescription());
+		contactOld.setPicture(contact.getPicture());
+		contactOld.setFavorite(contact.isFavorite());
+		contactOld.setWebsiteLink(contact.getWebsiteLink());
+		contactOld.setLinkdInLink(contact.getLinkdInLink());
+		contactOld.setCloudinaryImagePublicId(contact.getCloudinaryImagePublicId());
+		/* contactOld.setSocialLinks(contact.getSocialLinks()); */
+	
+		return contactRepo.save(contactOld);
 	}
 
 	@Override

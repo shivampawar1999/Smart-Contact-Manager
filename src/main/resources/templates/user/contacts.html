@@ -29,48 +29,53 @@
 
 
 					<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-						
-						<form th:object="${contactSearchForm}" th:action="@{'/user/contacts/search'}">
+					
+					<div th:replace="~{message :: messageBox}"></div>
+
+						<form th:object="${contactSearchForm}"
+							th:action="@{'/user/contacts/search'}">
 							<div
-							class="flex space-x-3 pt-5 items-center justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
+								class="flex space-x-3 pt-5 items-center justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
 
 
-							<!-- select box -->
-							<div>
-								<select id="field" name="field" th:field="*{field}"
-									class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-									<option selected value="">Select Field</option>
-									<option value="name">Name</option>
-									<option value="phone">Phone</option>
-									<option value="email">Email</option>
-									
-								</select>
-							</div>
+								<!-- select box -->
+								<div>
+									<select id="field" name="field" th:field="*{field}"
+										class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+										<option selected value="">Select Field</option>
+										<option value="name">Name</option>
+										<option value="phone">Phone</option>
+										<option value="email">Email</option>
 
-
-							<label for="table-search" class="sr-only">Search</label>
-							<div class="relative">
-								<div
-									class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-									<svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
-										aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-										fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round"
-											stroke-linejoin="round" stroke-width="2"
-											d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                </svg>
+									</select>
 								</div>
-								<input type="text" id="keyword" name="keyword" th:field="*{keyword}"
-									class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-									placeholder="Search for users">
+
+
+								<label for="table-search" class="sr-only">Search</label>
+								<div class="relative">
+									<div
+										class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+										<svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
+											aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+											fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round"
+												stroke-linejoin="round" stroke-width="2"
+												d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                </svg>
+									</div>
+									<input type="text" id="keyword" name="keyword"
+										th:field="*{keyword}"
+										class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+										placeholder="Search for users">
+								</div>
+
+								<!-- button -->
+								<button type="submit"
+									class="px-3 py-2 bg-gray-800 text-white rounded">search</button>
 							</div>
-							
-							<!-- button -->
-							<button  type="submit" class="px-3 py-2 bg-gray-800 text-white rounded">search</button>
-						</div>
 						</form>
-						
-						
+
+
 						<table
 							class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
 							<thead
@@ -118,23 +123,34 @@
 											</a>
 										</div>
 									</td>
-									<td class="px-6 py-4"><a href="#"
+									<td class="px-6 py-4">
+									
+									<!-- <a th:href="@{'/user/contacts/delete/'+${contact.id}}"
 										class="font-medium text-blue-600 dark:text-blue-500 hover:underline w-6 h-6 mr-1">
 											<i class="fas fa-trash" style="color: red;"></i>
-									</a> <a href="#"
+									</a>  -->
+									
+									<button th:onclick="deleteContact([[${contact.id}]])"
+										class="font-medium text-blue-600 dark:text-blue-500 hover:underline w-6 h-6 mr-1">
+											<i class="fas fa-trash" style="color: red;"></i>
+									</button> 
+									
+									
+									<a th:href="@{'/user/contacts/edit/'+${contact.id}}"
 										class="font-medium text-blue-600 dark:text-blue-500 hover:underline w-6 h-6 ml-1">
 											<i class="fas fa-edit" style="color: green;"></i>
-									</a> <a href="#"
+									</a>
+									 <button  th:onclick="loadContactdata([[${contact.id}]])"
 										class="font-medium text-blue-600 dark:text-blue-500 hover:underline w-6 h-6 ml-1">
 											<i class="fas fa-eye" style="color: purple;"></i>
-									</a></td>
+									</button></td>
 								</tr>
 
 							</tbody>
 						</table>
 
 						<!-- pagination -->
-						<div class="pagination_container pt-5 pb-5 text-center" >
+						<div class="pagination_container pt-5 pb-5 text-center">
 							<nav aria-label="Page navigation example">
 
 								<ul class="inline-flex -space-x-px text-base h-10">
@@ -158,19 +174,25 @@
 								</ul>
 							</nav>
 						</div>
-						<h2 class="text-5xl text-center bg-white p-4" th:if="${pagecontacts.empty}">No result found</h2>
-						
+						<h2 class="text-5xl text-center bg-white p-4"
+							th:if="${pagecontacts.empty}">No result found</h2>
+
 					</div>
 
 
 				</div>
 
 			</div>
+
+			<!-- including contact model-->
+			<div th:replace="~{user/contact_modal :: contact_modal}"></div>
 		</div>
+
 
 	</div>
 
 
+    <script th:src="@{'/js/contacts.js'}"></script>
 	<script>
 		console.log("All contacts page");
 	</script>
